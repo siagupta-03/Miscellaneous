@@ -1,0 +1,36 @@
+class Solution 
+{ 
+    //Function to return max value that can be put in knapsack of capacity W.
+    static int knapSack(int W, int wt[], int val[], int n) 
+    { 
+        int dp[][]= new int [n][W+1];
+        for(int rows[]: dp){
+            Arrays.fill(rows, -1);
+        }
+         return f(n-1, W, wt , val , dp);
+    } 
+    static int f(int idx , int W , int arr[], int val[],int dp[][]){
+       // if(W==0)return 1;
+        if(idx==0){
+            if(arr[idx]<=W){
+            return val[0];
+            
+            }
+            else return 0;
+        }
+        if(dp[idx][W]!=-1)return dp[idx][W] ;
+        
+        int notTake = f(idx-1, W, arr ,val, dp);
+        int Take=Integer.MIN_VALUE;
+        if(arr[idx]<= W){
+        Take = val[idx] +f(idx-1, W-arr[idx], arr,val, dp);}
+        
+       return dp[idx][W]= Math.max(notTake, Take);
+        
+        
+    }
+    
+}
+
+
+
